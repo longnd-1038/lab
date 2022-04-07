@@ -1,3 +1,4 @@
+#  aws cloudformation create-stack --stack-name asg-cloudformation-stack --template-body file://singleec2instance.yaml --parameters ParameterKey=SubnetID,ParameterValue=subnet-de859fb8 ParameterKey=VPCID,ParameterValue=vpc-ddde76a4 --capabilities CAPABILITY_IAM --region eu-west-1
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "Deploy Single EC2 Linux Instance"
 Parameters:
@@ -7,13 +8,6 @@ Parameters:
       - t3.nano
       - t3.micro
       - t3.small
-      - t3.medium
-      - t3.large
-      - t3.xlarge
-      - t3.2xlarge
-      - m5.large
-      - m5.xlarge
-      - m5.2xlarge
     Default: t2.micro
     Description: Amazon EC2 instance type
     Type: String
@@ -36,7 +30,6 @@ Parameters:
     Type: AWS::EC2::VPC::Id
 
 Resources:
-
   EC2InstanceSG:
     Type: AWS::EC2::SecurityGroup
     Properties:

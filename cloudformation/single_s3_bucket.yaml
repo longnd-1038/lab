@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Create single S3 bucket"
+Parameters:
+  BucketName:
+    Default: 'dinhlongit1998'
+    Description: Bucket name
+    Type: String
+
+Resources:
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      BucketName: !Ref 'BucketName'
+      AccessControl: Private
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+Outputs:
+  S3Bucket:
+    Description: Bucket Created using this template.
+    Value: !Ref 'BucketName'
